@@ -22,7 +22,7 @@ setup_maven
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-BUILD=redhat-412
+BUILD=redhat-121
 FABRIC8_KARAF_VERSION=1.2.0
 
 case "$1" in
