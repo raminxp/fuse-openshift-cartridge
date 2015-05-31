@@ -18,7 +18,7 @@ Compatible-Versions:
 - 0.1.8
 - 0.1.9
 - 0.1.10
-Cartridge-Vendor: redhat
+Cartridge-Vendor: fusesource
 Vendor: redhat
 Categories:
   - web_framework
