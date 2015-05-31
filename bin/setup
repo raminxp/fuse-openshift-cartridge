@@ -22,8 +22,8 @@ setup_maven
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
-BUILD=redhat-121
-FABRIC8-KARAF=fabric8-karaf-1.2.0
+BUILD=redhat-412
+FABRIC8_KARAF_VERSION=1.2.0
 
 case "$1" in
   -v|--version)
@@ -36,12 +36,9 @@ mkdir -p $OPENSHIFT_FUSE_DIR
 cd $OPENSHIFT_FUSE_DIR
 
 # try public fuse repository and fallback to ea repository
-HTTP_CODE=`curl --write-out %{http_code} --silent --output ${FABRIC8-KARAF}.${BUILD}.zip https://repository.jboss.org/nexus/content/groups/fs-public/io/fabric8/fabric8-karaf/1.0.0.${BUILD}/${FABRIC8-KARAF}.${BUILD}.zip`
+HTTP_CODE=`curl --write-out %{http_code} --silent --output fabric8-karaf-${FABRIC8_KARAF_VERSION}.${BUILD}.zip https://repository.jboss.org/nexus/content/groups/fs-public/io/fabric8/fabric8-karaf/${FABRIC8_KARAF_VERSION}.${BUILD}/fabric8-karaf-${FABRIC8_KARAF_VERSION}.${BUILD}.zip`
 if [ $HTTP_CODE != 200 ]; then
-  curl --write-out %{http_code} --silent --output ${FABRIC8-KARAF}.${BUILD}.zip https://repository.jboss.org/nexus/content/groups/ea/io/fabric8/fabric8-karaf/1.0.0.${BUILD}/${FABRIC8-KARAF}.${BUILD}.zip
+  curl --write-out %{http_code} --silent --output fabric8-karaf-${FABRIC8_KARAF_VERSION}.${BUILD}.zip https://repository.jboss.org/nexus/content/groups/ea/io/fabric8/fabric8-karaf/${FABRIC8_KARAF_VERSION}.${BUILD}/fabric8-karaf-${FABRIC8_KARAF_VERSION}.${BUILD}.zip
 fi
-unzip ${FABRIC8-KARAF}.${BUILD}.zip
-ln -s ${FABRIC8-KARAF}.${BUILD} container
-
-
-
+unzip fabric8-karaf-${FABRIC8_KARAF_VERSION}.${BUILD}.zip
+ln -s fabric8-karaf-${FABRIC8_KARAF_VERSION}.${BUILD} container
